@@ -28,7 +28,7 @@ git clone https://github.com/your-username/for-my-love.git
 cd for-my-love
 open index.html
 ```
-
+ 
 Or just double-click `index.html` in your file manager.
 
 > _No frameworks or backend needed — just pure HTML, CSS, and JavaScript!_

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background-color: #ffecf2;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .floating-emoji {
+            position: absolute;
+            font-size: 30px;
+            animation: floatUp 5s linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+
+        .container {
+            margin-top: 20vh;
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 35px;
+            font-family: 'Dancing Script', cursive;
+            animation: wave-text 2s infinite;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 12px 24px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .yes-btn {
+            background-color: #ff4081;
+            color: white;
+        }
+
+        .no-btn {
+            background-color: #aaa;
+            color: black;
+        }
+
+        .love-card {
+            display: none;
+            width: 80%;
+            max-width: 400px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .heart-icon {
+            font-size: 100px;
+            color: red;
+            cursor: pointer;
+            margin-top: 20px;
+            animation: bounce 1s infinite alternate;
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+
+        .card-container {
+            display: none;
+            perspective: 1000px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .card {
+            width: 300px;
+            height: 500px;
+            background-color: pink;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 1s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .card.open {
+            transform: rotateY(180deg);
+        }
+
+        .front, .inside {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-family: 'Dancing Script', cursive;
+            font-weight: bold;
+        }
+
+        .front {
+            background-color: pink;
+            color: white;
+        }
+
+        .inside {
+            background-color: white;
+            color: #ff4081;
+            transform: rotateY(180deg);
+            position: relative;
+        }
+
+        .heart-explosion {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+            color: red;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .heart-explosion span {
+            position: absolute;
+            animation: explode 1.5s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% { transform: scale(0.5); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container" id="question-page">
+        <h1>Do you love me? ❤️</h1>
+        <div class="buttons">
+            <button class="yes-btn" id="yes-btn" onclick="showMessage()">Yes</button>
+            <button class="no-btn" id="no-btn" onclick="shrinkNo()">No</button>
+        </div>
+    </div>
+
+    <div class="love-card" id="message-page">
+        <h2>My Dearest Rajeshwari ❤️</h2>
+        <p>
+            You are the most special person in my life! 💖  
+            Every moment with you is magical, and I am beyond grateful for all the love and happiness you bring into my world. 🌟  
+            You are my best friend 👯‍♀️, my love 💑, and my greatest inspiration 💡.  
+            Here’s to many more years together! 🌹💫  
+        </p>
+        <div class="heart-icon" onclick="showCard()">❤️</div>
+    </div>
+    
+    <div class="card-container" id="birthday-card">
+        <div class="card" onclick="flipCard()">
+            <div class="front">🎂 Happy 23rd Birthday! 🎉</div>
+            <div class="inside">
+                🎂 Happy 23rd Birthday, my love! 🎉❤️ You are my everything, and every day with you feels like a dream. 🌟 
+                I’m so grateful for your love, your smile, and the happiness you bring into my life. 💖
+                Here’s to a year full of laughter, love, and beautiful moments. 🥰🎂 
+                I love you more than words can say! 🎈 ❤️
+                <div class="heart-explosion" id="heart-explosion" onclick="startHeartExplosion()">❤️</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function shrinkNo() {
+            let noBtn = document.getElementById("no-btn");
+            noBtn.style.transform = `scale(${noBtn.style.transform.replace(/[^0-9.]/g, '') * 0.7 || 0.7})`;
+            if (parseFloat(noBtn.style.transform.replace(/[^0-9.]/g, '')) < 0.2) noBtn.style.display = "none";
+        }
+
+        function showMessage() {
+            document.getElementById("question-page").style.display = "none";
+            document.getElementById("message-page").style.display = "block";
+        }
+
+        function showCard() {
+            document.getElementById("message-page").style.display = "none";
+            document.getElementById("birthday-card").style.display = "block";
+        }
+
+        function flipCard() {
+            document.querySelector(".card").classList.toggle("open");
+        }
+
+        function startHeartExplosion() {
+            const explosionContainer = document.getElementById("heart-explosion");
+
+            // Create multiple hearts for explosion
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement("span");
+                heart.innerText = "❤️";
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.animationDelay = `${Math.random() * 1}s`;
+                explosionContainer.appendChild(heart);
+            }
+
+            // Show explosion
+            explosionContainer.style.opacity = 1;
+
+            // Close the page after animation
+            setTimeout(() => {
+                window.close();
+            }, 1500);
+        }
+
+        // Trigger the heart explosion when the heart inside the card is clicked
+        document.getElementById("heart-explosion").addEventListener("click", startHeartExplosion);
+
+        function createFloatingEmoji() {
+            const emojiList = ["❤️", "🎂"];
+            for (let i = 0; i < 3; i++) {
+                const emoji = document.createElement("div");
+                emoji.innerText = emojiList[Math.floor(Math.random() * emojiList.length)];
+                emoji.classList.add("floating-emoji");
+
+                emoji.style.left = `${Math.random() * 100}vw`;
+                emoji.style.bottom = "-50px";
+                emoji.style.fontSize = `${Math.random() * 20 + 20}px`;
+
+                document.body.appendChild(emoji);
+
+                setTimeout(() => {
+                    emoji.remove();
+                }, 5000);
+            }
+        }
+
+        setInterval(createFloatingEmoji, 400);
+    </script>
+
+</body>
+</html>
