@@ -11,8 +11,9 @@ This is a sweet, interactive webpage created as a heartfelt gift for someone spe
 - Mobile responsive and smooth animations.
 - Fun, playful, and emotional — perfect for a romantic birthday or love letter 💖
 
-## 📸 Preview 
+## 📸 Preview
 
+![preview](https://github.com/Trushar2411/Qr/raw/main/for-my-love/preview.png)
 
 ## 💻 How to Run
 
@@ -28,7 +29,7 @@ git clone https://github.com/your-username/for-my-love.git
 cd for-my-love
 open index.html
 ```
- 
+
 Or just double-click `index.html` in your file manager.
 
 > _No frameworks or backend needed — just pure HTML, CSS, and JavaScript!_
