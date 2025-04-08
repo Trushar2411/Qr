@@ -13,7 +13,8 @@ This is a sweet, interactive webpage created as a heartfelt gift for someone spe
 
 ## 📸 Preview
 
-![preview](https://github.com/Trushar2411/Qr/raw/main/for-my-love/preview.png)
+<img src="https://github.com/Trushar2411/Qr/raw/main/for-my-love/preview.png" alt="preview" width="500"/>
+
 
 ## 💻 How to Run
 
